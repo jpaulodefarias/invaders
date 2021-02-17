@@ -1,10 +1,10 @@
 use crate::frame::Drawable;
 use crate::frame::Frame;
+use crate::invaders::Invaders;
+use crate::shot::Shot;
 use crate::NUM_COLS;
 use crate::NUM_ROWS;
-use crate::shot::Shot;
 use std::time::Duration;
-use crate::invaders::Invaders;
 
 pub struct Player {
     x: usize,

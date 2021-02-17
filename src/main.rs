@@ -3,6 +3,7 @@ use crossterm::event::{Event, KeyCode};
 use crossterm::terminal::{EnterAlternateScreen, LeaveAlternateScreen};
 use crossterm::{event, terminal, ExecutableCommand};
 use invaders::frame::{new_frame, Drawable};
+use invaders::invaders::Invaders;
 use invaders::player::Player;
 use invaders::{frame, render};
 use rusty_audio::Audio;
@@ -10,7 +11,6 @@ use std::error::Error;
 use std::sync::mpsc;
 use std::time::{Duration, Instant};
 use std::{io, thread};
-use invaders::invaders::Invaders;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let mut audio = Audio::new();
