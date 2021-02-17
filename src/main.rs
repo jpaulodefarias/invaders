@@ -1,14 +1,14 @@
-use std::error::Error;
-use rusty_audio::Audio;
-use std::{io, thread};
-use crossterm::{terminal, ExecutableCommand, event};
-use crossterm::terminal::{EnterAlternateScreen, LeaveAlternateScreen};
 use crossterm::cursor::{Hide, Show};
-use std::time::Duration;
 use crossterm::event::{Event, KeyCode};
-use std::sync::mpsc;
-use invaders::{frame, render};
+use crossterm::terminal::{EnterAlternateScreen, LeaveAlternateScreen};
+use crossterm::{event, terminal, ExecutableCommand};
 use invaders::frame::new_frame;
+use invaders::{frame, render};
+use rusty_audio::Audio;
+use std::error::Error;
+use std::sync::mpsc;
+use std::time::Duration;
+use std::{io, thread};
 
 fn main() -> Result<(), Box<dyn Error>> {
     let mut audio = Audio::new();
@@ -56,7 +56,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                     KeyCode::Esc | KeyCode::Char('q') => {
                         audio.play("lose");
                         break 'gameloop;
-                    },
+                    }
                     _ => {}
                 }
             }
