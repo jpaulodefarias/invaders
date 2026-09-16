@@ -1,6 +1,6 @@
 [package]
 name = "invaders"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["João Paulo de Farias"]
 edition = "2018"
 
@@ -8,5 +8,5 @@ edition = "2018"
 
 [dependencies]
 crossterm = "0.17.7"
-rusty_audio = "1.1.4"
+rusty_audio = "1.4.1"
 rusty_time = "0.11.0"
