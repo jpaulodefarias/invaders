@@ -15,7 +15,7 @@ jobs:
           - os: ubuntu-22.04
             target: x86_64-unknown-linux-gnu
             name: linux-x86_64
-            archive: invaders-linux-x86_64.tar.gz
+            archive: invaders-linux-x86_64.zip
             kind: unix
 
           - os: windows-latest
@@ -24,16 +24,10 @@ jobs:
             archive: invaders-windows-x86_64.zip
             kind: windows
 
-          - os: macos-13
-            target: x86_64-apple-darwin
-            name: macos-x86_64
-            archive: invaders-macos-x86_64.tar.gz
-            kind: unix
-
           - os: macos-latest
             target: aarch64-apple-darwin
             name: macos-aarch64
-            archive: invaders-macos-aarch64.tar.gz
+            archive: invaders-macos-aarch64.zip
             kind: unix
 
     runs-on: ${{ matrix.os }}
@@ -56,7 +50,7 @@ jobs:
       - name: Build
         run: cargo build --locked --release --target ${{ matrix.target }}
 
-      - name: Package Unix
+      - name: Package Linux or macOS
         if: matrix.kind == 'unix'
         shell: bash
         run: |
@@ -66,8 +60,10 @@ jobs:
           cp "target/${{ matrix.target }}/release/invaders" "$package_dir/"
           cp -R sounds README.md LICENSE "$package_dir/"
 
-          tar -czf "dist/${{ matrix.archive }}" \
-            -C package "invaders-${{ matrix.name }}"
+          (
+            cd package
+            zip -r "../dist/${{ matrix.archive }}" "invaders-${{ matrix.name }}"
+          )
 
       - name: Package Windows
         if: matrix.kind == 'windows'
